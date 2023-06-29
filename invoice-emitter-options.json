@@ -1,0 +1,9 @@
+{
+    "login": "",
+    "password": "",
+    "baseInvoiceCode": "",
+    "invoiceValue": 0,
+    "invoiceMonth": "",
+    "invoiceYear": 2023,
+    "emailRecipients": []
+}
