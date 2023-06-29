@@ -122,6 +122,7 @@ export class InvoiceEmitter {
         await generatedInvoiceFrame.locator('#btnOutroDestinatario').click();
         await generatedInvoiceFrame.locator('#txtMailEnvio').fill(this.emailRecipients.join(';'));
         await generatedInvoiceFrame.locator('#btnEnviarNovoEmail').click();
+        await this.page.waitForTimeout(3000);
         console.info('Email enviado');
     }
     //#endregion
