@@ -1,6 +1,7 @@
 import { Month } from "../enums/month.enum";
 
 export type InvoiceEmitterOptions = {
+    notaControlCity: string;
     login: string;
     password: string;
     baseInvoiceCode: string;

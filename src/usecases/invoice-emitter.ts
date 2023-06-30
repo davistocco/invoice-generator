@@ -7,6 +7,7 @@ import { Month } from "../enums/month.enum.js";
 export class InvoiceEmitter {
     private page!: Page;
     private emitterFrame!: FrameLocator;
+    private readonly notaControlCity: string;
     private readonly login: string;
     private readonly password: string;
     private readonly invoiceValue: number;
@@ -16,6 +17,7 @@ export class InvoiceEmitter {
     private readonly baseInvoiceCode: string;
 
     constructor(options: InvoiceEmitterOptions) {
+        this.notaControlCity = options.notaControlCity;
         this.login = options.login;
         this.password = options.password;
         this.invoiceValue = options.invoiceValue;
@@ -48,7 +50,7 @@ export class InvoiceEmitter {
         await this.page.locator('#txtLogin').fill(this.login);
         await this.setPassword();
         await this.page.locator('#btnAcessar').click();
-        await this.page.waitForURL('https://www.notaeletronica.com.br/ribeiraopreto/Default/Master2.aspx');
+        await this.page.waitForURL(`https://www.notaeletronica.com.br/${this.notaControlCity}/Default/Master2.aspx`);
         console.info('Login realizado');
     }
 
@@ -74,7 +76,7 @@ export class InvoiceEmitter {
         this.emitterFrame = this.page.frameLocator('#iframe');
         await this.emitterFrame.locator('#txtNumCarregaNf').fill(this.baseInvoiceCode);
         await this.emitterFrame.locator('#btnCarregaNf').click();
-        await this.page.waitForResponse('https://www.notaeletronica.com.br/ribeiraopreto/NotaDigital/NovaNotaDigitalAbrasf.aspx');
+        await this.page.waitForResponse(`https://www.notaeletronica.com.br/${this.notaControlCity}/NotaDigital/NovaNotaDigitalAbrasf.aspx`);
         await this.emitterFrame.locator('#txtDescServicos').clear();
         await this.emitterFrame.locator('#txtDescServicos').fill(this.prepareInvoiceDescription());
         await this.emitterFrame.locator('#txtTotal').fill(this.invoiceValue.toString());
