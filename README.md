@@ -9,13 +9,16 @@ Reach me on LinkedIn: [Davi Santoro Stocco](https://linkedin.com/in/davistocco)
 
 ```json
 {
-    "login": "",
-    "password": "",
-    "baseInvoiceCode": "",
-    "invoiceValue": 0,
-    "invoiceMonth": "",
+    "login": "99999999999",
+    "password": "999999",
+    "baseInvoiceCode": "99",
+    "invoiceValue": 2000,
+    "invoiceMonth": "Junho",
     "invoiceYear": 2023,
-    "emailRecipients": []
+    "emailRecipients": [
+        "financial@company.com",
+        "whatever@you.com"
+    ]
 }
 ```
 - "login": Your nota control login (CPF).
