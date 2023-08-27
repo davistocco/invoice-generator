@@ -1,0 +1,24 @@
+service: invoice-generator
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  memorySize: 128
+  timeout: 60
+
+functions:
+  invoice-generator:
+    handler: src/index.handler
+    events:
+      - schedule: cron(0/30 6-23 ? * * *)
+
+plugins:
+  - serverless-esbuild
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+    sourcemap: true
