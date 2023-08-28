@@ -51,6 +51,7 @@ Thumbs.db
 # Env files
 .env
 .env.local
+.env.dev
 
 # SAM files
 .aws-sam

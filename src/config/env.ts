@@ -6,8 +6,7 @@ const env = cleanEnv(process.env, {
   USE_PROXY: bool({ default: false }),
   PROXY_USERNAME: str(),
   PROXY_PASSWORD: str(),
-  PROXY_SERVER: str(),
-  NOTION_TOKEN: str()
+  PROXY_SERVER: str()
 });
 
 export type Env = typeof env;

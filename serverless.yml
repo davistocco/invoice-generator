@@ -5,14 +5,27 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
-  memorySize: 128
-  timeout: 60
+  memorySize: 768
+  timeout: 600
+  environment:
+    NODE_ENV: ${env:NODE_ENV}
+    HEADLESS: ${env:HEADLESS}
+    USE_PROXY: ${env:USE_PROXY}
+    PROXY_PASSWORD: ${env:PROXY_PASSWORD}
+    PROXY_SERVER: ${env:PROXY_SERVER}
+    PROXY_USERNAME: ${env:PROXY_USERNAME}
+    NOTA_CONTROL_CITY: ${env:NOTA_CONTROL_CITY}
+    LOGIN: ${env:LOGIN}
+    PASSWORD: ${env:PASSWORD}
+    BASE_INVOICE_CODE: ${env:BASE_INVOICE_CODE}
+    INVOICE_VALUE: ${env:INVOICE_VALUE}
+    EMAIL_RECIPIENTS: ${env:EMAIL_RECIPIENTS}
 
 functions:
-  invoice-generator:
+  handler:
     handler: src/index.handler
     events:
-      - schedule: cron(0/30 6-23 ? * * *)
+      - schedule: cron(0 11 27 * ? *) # 11:00 AM (UTC) on the 27th day of the month
 
 plugins:
   - serverless-esbuild

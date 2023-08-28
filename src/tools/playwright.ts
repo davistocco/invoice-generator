@@ -11,7 +11,7 @@ export const initBrowser = async () => {
     args: await getPlaywrightArgs(),
     executablePath: await getBrowserPath(),
     headless: env.HEADLESS,
-    timeout: 30 * 1000
+    timeout: 600 * 1000
   });
   console.log('Browser initialized');
   return browser;
@@ -25,6 +25,10 @@ export const closeBrowser = async (browser: Browser) => {
 const getPlaywrightArgs = async () => {
   const args = [
     ...chromium.args,
+    '--no-sandbox',
+    '--single-process',
+    '--disable-gpu',
+    '--disable-dev-shm-usage',
     '--no-sandbox'
   ];
   if (env.USE_PROXY) {
@@ -40,6 +44,7 @@ const getBrowserPath = async () => {
     return playwright.chromium.executablePath();
   }
   return await chromium.executablePath(
+    // TODO: put this file in a github release or s3 bucket
     'https://github.com/Sparticuz/chromium/releases/download/v110.0.1/chromium-v110.0.1-pack.tar'
   );
 };
@@ -58,7 +63,6 @@ export const initPage = async (browser: Browser) => {
   const page = await browser.newPage({
     userAgent: new UserAgent().toString()
   });
-  page.setDefaultNavigationTimeout(30 * 1000);
   return page;
 };
 
