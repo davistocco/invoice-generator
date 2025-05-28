@@ -37,3 +37,5 @@ To execute the program, follow these steps:
 2. Run `npm run start`.
 
 These are the required steps to execute the program. Ensure that you fill in the information correctly in the `options.json` file before running the project.
+
+test LazyPR 1
